@@ -1,0 +1,20 @@
+db:
+  image: postgres
+  ports:
+    - "5432"
+app:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  entrypoint: /usr/src/app/script/start
+  volumes:
+    - .:/usr/src/app
+  volumes_from:
+    - gems
+  ports:
+    - "3000:3000"
+  links:
+    - db
+gems:
+  image: busybox
+  volumes:
+    - /ruby_gems/2.2
