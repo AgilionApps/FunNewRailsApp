@@ -1,2 +1,20 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Hey there</h1>
+<p>Sign my guestbook!</p>
+<%= form_for @new_guest, url: {action: 'sign'} do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+  <%= f.label :body %>
+  <%= f.text_area :body %><br>
+  <%= f.submit 'Sign' %>
+<% end %>
+<ul>
+  <% @guestbook.each do |guest| %>
+    <li>
+      <div>
+        <h4><%= guest.username %></h4>
+        <p><%= guest.body %></p>
+        <p><%= guest.created_at %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>
