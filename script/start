@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export PATH=$GEM_HOME/bin:$PATH
+
 echo "Bundling gems"
 gem install --conservative bundler
 bundle install --jobs 4 --retry 3 --path=$GEM_HOME
