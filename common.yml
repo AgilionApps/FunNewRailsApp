@@ -1,0 +1,5 @@
+railsimage:
+  build: .
+  entrypoint: /usr/src/app/script/start
+  volumes:
+    - .:/usr/src/app

@@ -6,7 +6,11 @@ class WelcomeController < ApplicationController
 
   def sign
     guest = Guestbook.new(guestbook_params)
-    if guest.save
+    if guest.valid?
+      SaveGuestbookEntryJob
+        .set(wait: 10.seconds)
+        .perform_later(guestbook_params)
+
       redirect_to welcome_index_path
     else
       redirect_to welcome_index_path
